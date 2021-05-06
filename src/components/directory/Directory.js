@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './Directory.scss';
-import MenuItem from '../Menu-Item/Menu-Item';
+import MenuItem from '../menu-item/menu-item';
 
 class Directory extends Component {
     constructor(props){
         super(props);
         this.state= {
             sections:[
-                 {
+          {
             title: 'hats',
             imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
             id: 1,
