@@ -13,7 +13,7 @@ const CartIcon =({ toggleCartHidden })=>(
         <span className='item-count'>0</span>
     </div>
 )
-const mapDispatch = dispatch=>({
+const mapDispatch = dispatch =>({
     toggleCartHidden:()=> dispatch(toggleCartHidden())
 })
 export default connect(null, mapDispatch)(CartIcon);
