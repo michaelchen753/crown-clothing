@@ -1,7 +1,10 @@
 import { 
     TOGGLE_CART_HIDDEN,
     ADD_ITEM,
- } from './cart.types'
+ } from './cart.types';
+
+ import { addItemToCart } from './cart.utils';
+
 const INITIAL_STATE={
     hidden:true,
     cartItems:[]
@@ -12,7 +15,7 @@ const CartReducer = (state = INITIAL_STATE, action={})=> {
         case TOGGLE_CART_HIDDEN:
             return Object.assign({}, state, { hidden:!state.hidden });
         case ADD_ITEM:
-            return Object.assign({}, state, { cartItems:[...state.cartItems, action.payload] });            
+            return Object.assign({}, state, { cartItems:addItemToCart(state.cartItems, action.payload) });            
         default:
             return state;
     }  
