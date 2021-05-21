@@ -5,9 +5,9 @@ import CustomButton from '../custom-button/custom-button';
 import './collection-item.scss';
 
 const CollectionItem =({item, addItem})=> {
-    const { id, name, imageUrl, price }= item;
+    const { name, imageUrl, price }= item;
     return (
-        <div className='collection-item' key={id} >
+        <div className='collection-item' >
             <div 
                 className='image'
                 style={{backgroundImage:`url(${imageUrl})`
@@ -25,6 +25,6 @@ const CollectionItem =({item, addItem})=> {
 }
 
 const mapDispatch=(dispatch)=>({
-    addItem:(item)=>dispatch(addItem(item))
+    addItem: item =>dispatch(addItem(item))
 })
 export default connect(null, mapDispatch)(CollectionItem);

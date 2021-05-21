@@ -9,9 +9,12 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
                 cartItem.id === cartItemToAdd.id
                 ? {...cartItem, quantity:cartItem.quantity + 1}
                 : cartItem
+                //对新添加的相同的项目进行数量加一，其他的项目保持不变。
                 )
         }
         return [...cartItems, {...cartItemToAdd, quantity: 1}]
+        //quantity property gets attached first time around since
+        //this if block won't run when it's a new item.
 };
 
 export const removeItemFromCart =(cartItems, cartItemToRemove) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import HomePage from './components/Pages/HomePage/HomePage';
 import ShopPage from './components/Pages/Shop/Shop';
@@ -14,13 +14,6 @@ import './App.css';
 
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      currentUser:null
-    }
-  }
-
   unsubscribeFromAuth = null;
 
   componentDidMount() {
@@ -45,13 +38,19 @@ class App extends Component {
   }
 
   render() {
+    const { currentUser } = this.props;
     return (
     <div>
     <Header />
       <Switch>
         <Route  exact path='/checkout' component={CheckoutPage} />
         <Route  path='/shop' component={ShopPage} />
-        <Route  path='/signin' component={SignInAndSignUpPage} />
+        <Route  exact path='/signin' render= {()=>
+           currentUser ? 
+            <Redirect to='/'/>
+          :
+          <SignInAndSignUpPage />          
+        } />
         <Route  exact path='/' component={HomePage} />
       </Switch>
     </div>
@@ -59,9 +58,9 @@ class App extends Component {
 }
 }
 
-  const mapState = createStructuredSelector({
-    currentUser :selectCurrentUser
-  });
+const mapState = createStructuredSelector({
+  currentUser :selectCurrentUser
+});
   
 const mapDispatch= dispatch =>({
   setCurrentUser:user => dispatch(setCurrentUser(user))
