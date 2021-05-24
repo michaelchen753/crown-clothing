@@ -8,7 +8,7 @@ import MenuItem from '../menu-item/menu-item';
 const Directory =({ sections })=>(
         <div className='directory-menu'>
         {
-            sections.map(({id, ...otherSectionProps })=> {
+           sections.map(({id, ...otherSectionProps })=> {
                 return <MenuItem key={id} {...otherSectionProps} />
             })
         }

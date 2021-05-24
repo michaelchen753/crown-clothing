@@ -9,7 +9,7 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
                 cartItem.id === cartItemToAdd.id
                 ? {...cartItem, quantity:cartItem.quantity + 1}
                 : cartItem
-                //对新添加的相同的项目进行数量加一，其他的项目保持不变。
+                //对和新添加的相同项目数量进行加一，其他的项目保持不变。
                 )
         }
         return [...cartItems, {...cartItemToAdd, quantity: 1}]

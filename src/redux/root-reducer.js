@@ -9,7 +9,7 @@ import directoryReducer from '../redux/directory/directory.reducer';
 const persistConfig = {
     key:'root',
     storage,
-    whitelist:['cart','user']
+    whitelist:['cart','user']//reducer name we want them to be storaged.
 };
 
 const rootReducer = combineReducers({

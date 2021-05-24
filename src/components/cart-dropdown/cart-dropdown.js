@@ -11,29 +11,31 @@ import './cart-dropdown.scss';
 
 
 
-const CartDropdown =({ cartItems, history, dispatch })=>{
+const CartDropdown =({ cartItems, history, toggleCartHidden })=>{
     return(
     <div className='cart-dropdown'>
         <div className='cart-items'>
             {   cartItems.length?
                ( cartItems.map(cartItem=>
-                <CartItem key={ cartItem.id } item={ cartItem }/>))
+                <CartItem key={ cartItem.id } cartItem={ cartItem }/>))
                 :
                 (
-                    <span className='empty-message'>Your trolley is empty.</span>
+                    <span className='empty-message'>Your cart is empty.</span>
                     )
             }
         </div>
-        <CustomButton
+        <CustomButton 
         onClick = { 
             () =>{ history.push('/checkout');
-            dispatch(toggleCartHidden())}
+            toggleCartHidden() }
         }
         >Go TO CHECKOUT</CustomButton>
     </div>
 )}
-
+const mapDispatch= dispatch=> ({
+    toggleCartHidden:()=>dispatch(toggleCartHidden())
+})
 const mapState= createStructuredSelector({
     cartItems: selectCartItems
 });
-export default withRouter(connect(mapState)(CartDropdown));
+export default withRouter(connect(mapState, mapDispatch)(CartDropdown));
