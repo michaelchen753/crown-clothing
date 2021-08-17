@@ -15,22 +15,22 @@ const INITIAL_STATE={
 const CartReducer = (state = INITIAL_STATE, action={})=> {
     switch(action.type) {
         case TOGGLE_CART_HIDDEN:
-            return Object.assign({}, state, { 
-                hidden:!state.hidden
-             });
+            return {
+                ...state, hidden:!state.hidden
+            };
         case ADD_ITEM:
-            return Object.assign({}, state, { 
-                cartItems:addItemToCart(state.cartItems, action.payload
-                    ) });
+            return{
+                ...state, cartItems:addItemToCart(state.cartItems, action.payload)
+            };
         case REMOVE_ITEM:
-            return Object.assign({}, state, { 
-                cartItems:removeItemFromCart(state.cartItems, action.payload
-                    ) });
+            return{
+                ...state, cartItems:removeItemFromCart(state.cartItems, action.payload)
+            };
+
         case CLEAR_ITEM_FROM_CART:
-            return Object.assign({}, state, { 
-                cartItems:state.cartItems.filter( 
-                cartItem => cartItem.id !== action.payload.id
-            )});            
+            return {
+                ...state, cartItems:state.cartItems.filter(cartItem=>cartItem.id!==action.payload.id)
+            };            
         default:
             return state;
     }  
